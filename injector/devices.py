@@ -961,6 +961,14 @@ DEVICES = [
                 match_mode=MatchMode.ALL,
                 description='Force AVB_SLOT_VERIFY_FLAGS_ALLOW_VERIFICATION_ERROR (boot when spoofed-locked)',
             ),
+            'bypass_pvmfw_avb': PatchStage(
+                'bypass_pvmfw_avb',
+                pattern='1f 00 00 71 00 09 43 7a f4 17 9f 1a',
+                replacement='1f 00 00 71 00 09 43 7a 34 00 80 52',
+                partition='lk',
+                match_mode=MatchMode.ALL,
+                description='Take the unlocked path on the pvmfw AVB result',
+            ),
             'disable_mte': PatchStage(
                 'disable_mte',
                 pattern='e0 03 08 aa 22 f1 05 b9',
